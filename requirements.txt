@@ -8,3 +8,4 @@ imbalanced-learn
 scikit-learn
 flask
 ipykernel
+ipywidgets
