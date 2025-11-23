@@ -79,6 +79,7 @@ PROYECTOFINAL-MURIEL-VITONCO/
 ├── app.py                                   # [BACKEND FLASK]
 ├── notebook.ipynb                           # [NOTEBOOK]
 ├── reporte_eda_profiling.html               # [REPORTE YDATA-PROFILING]
+├── presentation.pdf                         # [PRESENTACIÓN]
 ├── .python-version                          # [VERSIÓN DE PYTHON]
 ├── requirements.txt                         # [DEPENDENCIAS]
 └── README.md                                # < USTED ESTÁ AQUÍ >
@@ -194,6 +195,8 @@ El modelo final (**Random Forest**) se seleccionó tras el EDA, Data Preprocessi
 4. `age_in_years`
 5. `total_late_payments`
 6. `has_late_payments` (Historial)
+
+Para consultar la totalidad del análisis, se incluye en el repositorio el archivo `presentation.pdf`. Estas diapositivas contienen el resumen completo del proyecto, la metodología detallada, los hallazgos visuales y las conclusiones estratégicas finales. Se recomienda su revisión para una comprensión integral del caso de negocio y los hallazgos encontrados.
 
 ## 👥 AUTORES
 
