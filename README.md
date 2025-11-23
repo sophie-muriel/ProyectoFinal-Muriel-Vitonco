@@ -13,17 +13,17 @@ La instancia de producción está desplegada estáticamente en **Railway**.
 
 **🔗 ACCESO AL SISTEMA** > **[https://proyectofinal-muriel-vitonco-production.up.railway.app/](https://proyectofinal-muriel-vitonco-production.up.railway.app/)**
 
-> ## ⚠️ NOTA: ARCHIVOS EXTERNOS
->
-> Para optimizar el repositorio, los archivos binarios pesados (`.pkl`) **NO** están alojados aquí.
->
-> - **Origen:** Se generan automáticamente en la `[SECCIÓN 10]` del Jupyter Notebook durante su ejecución.
-> - **Runtime:** Durante el despliegue, el sistema descarga automáticamente los modelos desde **Hugging Face Hub**.
->
-> | ARCHIVO | TIPO | ENLACE |
-> | :------ | :--- | :----- |
-> | `insurance_renewal_model.pkl` | Modelo (Random Forest) | [Hugging Face Repo](https://huggingface.co/sophie-muriel/insurance-renewal/blob/main/insurance_renewal_model.pkl) |
-> | `scaler.pkl` | Scaler (MinMax) | [Hugging Face Repo](https://huggingface.co/sophie-muriel/insurance-renewal/blob/main/scaler.pkl) |
+## ⚠️ NOTA: ARCHIVOS EXTERNOS
+
+Para optimizar el repositorio, los archivos binarios pesados (`.pkl`) **NO** están alojados aquí.
+
+- **Origen:** Se generan automáticamente en la `[SECCIÓN 10]` del Jupyter Notebook durante su ejecución.
+- **Runtime:** Durante el despliegue, el sistema descarga automáticamente los modelos desde **Hugging Face Hub**.
+
+| ARCHIVO | TIPO | ENLACE |
+| :------ | :--- | :----- |
+| `insurance_renewal_model.pkl` | Modelo (Random Forest) | [Hugging Face Repo](https://huggingface.co/sophie-muriel/insurance-renewal/blob/main/insurance_renewal_model.pkl) |
+| `scaler.pkl` | Scaler (MinMax) | [Hugging Face Repo](https://huggingface.co/sophie-muriel/insurance-renewal/blob/main/scaler.pkl) |
 
 ## 🧭 ÍNDICE // NAVEGACIÓN
 
