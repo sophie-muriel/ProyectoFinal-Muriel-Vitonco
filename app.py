@@ -1,65 +1,78 @@
 import numpy as np
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import pickle
 from huggingface_hub import hf_hub_download
+import threading
 
 app = Flask(__name__)
 
+# variables globales
 model = None
 scaler = None
+is_ready = False
+load_lock = threading.Lock()
 
 
-# cargar modelo y scaler remoto
-def load_assets():
-    global model, scaler
-    if model is not None and scaler is not None:
+def background_load():
+    """Descarga y carga el modelo y scaler en el fondo para no bloquear el sitio web."""
+    global model, scaler, is_ready
+
+    if is_ready:
         return
 
-    try:
-        # paths para modelo y scaler con Hugging Face
-        model_path = hf_hub_download(
-            repo_id="sophie-muriel/insurance-renewal",
-            filename="insurance_renewal_model.pkl",
-            cache_dir="."
-        )
-        scaler_path = hf_hub_download(
-            repo_id="sophie-muriel/insurance-renewal",
-            filename="scaler.pkl",
-            cache_dir="."
-        )
+    with load_lock:
+        try:
+            print(">>> EMPEZANDO DESCARGA DE MODELO...", flush=True)
 
-        # abrir con Pickle
-        with open(model_path, "rb") as f:
-            model = pickle.load(f)
-        with open(scaler_path, "rb") as f:
-            scaler = pickle.load(f)
+            model_path = hf_hub_download(
+                repo_id="sophie-muriel/insurance-renewal",
+                filename="insurance_renewal_model.pkl",
+                cache_dir="."
+            )
+            scaler_path = hf_hub_download(
+                repo_id="sophie-muriel/insurance-renewal",
+                filename="scaler.pkl",
+                cache_dir="."
+            )
 
-    except Exception as e:
-        print(f"ERROR: {str(e)}", flush=True)
-        raise
+            # abrir con Pickle
+            with open(model_path, "rb") as f:
+                model = pickle.load(f)
+            with open(scaler_path, "rb") as f:
+                scaler = pickle.load(f)
+
+            is_ready = True
+            print(">>> MODELO CARGADO CORRECTAMENTE.", flush=True)
+
+        except Exception as e:
+            print(f"ERROR CARGANDO MODELO: {str(e)}", flush=True)
+            is_loading = False
 
 
-# cargar modelo local
-# model = pickle.load(open("insurance_renewal_model.pkl", "rb"))
-
-# cargar scaler local
-# scaler = pickle.load(open("scaler.pkl", "rb"))
+# thread (background loading basically)
+threading.Thread(target=background_load).start()
 
 
 @app.route("/")
 def home():
-    try:
-        # cargar modelo y scaler
-        load_assets()
-        return render_template("index.html")
-    except Exception as e:
-        return f"Error: {str(e)}", 500
+    return render_template("index.html")
+
+
+@app.route("/status")
+def status():
+    return jsonify({"ready": is_ready})
 
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    if not is_ready:
+        return render_template(
+            "index.html",
+            prediction_text="MODELO CARGANDO /// POR FAVOR ESPERE."
+        )
+
     try:
-        load_assets()  # cargar modelo y scaler
+        # features en orden
         form_fields = [
             "perc_premium_paid_by_cash_credit",
             "income",
@@ -67,7 +80,7 @@ def predict():
             "age_in_years",
             "total_late_payments",
             "has_late_payments"
-        ]  # features del modelo en orden
+        ]
 
         form_values = [float(request.form[field]) for field in form_fields]
 
@@ -95,20 +108,12 @@ def predict():
         X_input = np.hstack([X_final, np.array([[has_late]])])
 
         # predicción
-        prediction = model.predict(X_input)[0]
         prob_renew = model.predict_proba(X_input)[0][1]
 
-        # generar texto del resultado
-        if prediction == 1:
-            result_text = (
-                f"RENOVACIÓN PROBABLE // PROBABILIDAD: "
-                f"<span class='prob-accent'>{prob_renew*100:.1f}%</span>"
-            )
+        if prob_renew >= 0.5:
+            result_text = f"RENOVACIÓN PROBABLE // PROBABILIDAD: <span class='prob-accent'>{prob_renew*100:.1f}%</span>"
         else:
-            result_text = (
-                f"RENOVACIÓN IMPROBABLE (CHURN) // PROBABILIDAD: "
-                f"<span class='prob-accent'>{prob_renew*100:.1f}%</span>"
-            )
+            result_text = f"RENOVACIÓN IMPROBABLE (CHURN) // PROBABILIDAD: <span class='prob-accent'>{prob_renew*100:.1f}%</span>"
 
         return render_template("index.html", prediction_text=result_text)
     except Exception as e:
