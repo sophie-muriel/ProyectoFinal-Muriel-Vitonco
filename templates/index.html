@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PREDICTOR DE RENOVACIÓN // ML</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    /> -->
+  </head>
+  <body>
+    <div class="grid-container">
+      <aside class="panel-left">
+        <div class="header">
+          <h1>PREDICCIÓN DE RENOVACIÓN DE PÓLIZAS<span>+</span></h1>
+        </div>
+        <div class="manifesto">
+          <p>
+            Evaluación avanzada con algoritmos para predecir la retención de
+            pólizas de seguros, basada en patrones de pago y datos demográficos.
+            Ingrese los valores crudos del cliente para obtener la probabilidad
+            de renovación en tiempo real.
+          </p>
+          <br />
+          <p style="color: white; font-weight: bold">
+            // MODELO PREDICTIVO RANDOM FOREST.
+          </p>
+        </div>
+      </aside>
+      <main class="panel-right">
+        <form
+          action="{{ url_for('predict')}}"
+          method="post"
+          style="
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+          "
+        >
+          <div class="form-grid">
+            <div class="input-group">
+              <label>Porcentaje de Pago en Efectivo/Crédito (#)</label>
+              <input
+                type="number"
+                name="perc_premium_paid_by_cash_credit"
+                placeholder="0.00 - 1.00"
+                required
+                min="0"
+                max="1"
+                step="0.001"
+              />
+            </div>
+            <div class="input-group">
+              <label>Ingresos Anuales ($)</label>
+              <input
+                type="number"
+                name="income"
+                placeholder="Valor"
+                required
+                min="0"
+                max="90000000"
+                step="10"
+              />
+            </div>
+            <div class="input-group">
+              <label>Puntuación de Suscripción (#)</label>
+              <input
+                type="number"
+                name="application_underwriting_score"
+                placeholder="0.00 - 100.00"
+                required
+                min="0"
+                max="100"
+                step="0.001"
+              />
+            </div>
+            <div class="input-group">
+              <label>Edad en Años (#)</label>
+              <input
+                type="number"
+                name="age_in_years"
+                placeholder="Años"
+                required
+                min="0"
+                max="103"
+                step="1"
+              />
+            </div>
+            <div class="input-group">
+              <label>Total de Pagos Atrasados (#)</label>
+              <input
+                type="number"
+                name="total_late_payments"
+                placeholder="Conteo"
+                required
+                min="0"
+                max="50"
+                step="1"
+              />
+            </div>
+            <div class="input-group">
+              <label>Indicador de Historial (0/1)</label>
+              <input
+                type="number"
+                name="has_late_payments"
+                placeholder="Booleano"
+                required
+                min="0"
+                max="1"
+                step="1"
+              />
+            </div>
+          </div>
+          <div class="action-area">
+            <div class="result-display">
+              {% if prediction_text %}
+              <div class="result-text">> RESULTADO DEL MODELO:</div>
+              <div class="result-value">{{ prediction_text }}</div>
+              {% else %}
+              <div class="result-text">> ESTADO:</div>
+              <div class="result-value" style="color: #333">
+                Esperando Entrada...
+              </div>
+              {% endif %}
+            </div>
+            <button type="submit" class="btn-submit">
+              Obtener Resultado <span style="font-size: 1.2em">→</span>
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
