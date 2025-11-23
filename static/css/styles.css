@@ -1,12 +1,11 @@
 :root {
   --bg-dark: #0f0f0f;
   --bg-panel: #161616;
+  --bg-green: #ffe05805;
   --text-main: #ffffff;
-  --text-muted: #666666;
-  --accent: #d9ff00;
-  --accent-hover: #ffffff;
+  --text-muted: #999488;
+  --accent: #ffe058;
   --border: #2a2a2a;
-  --grid-size: 1400px;
 }
 
 * {
@@ -20,7 +19,8 @@ body {
   color: var(--text-main);
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* --- ribbon carrousel --- */
@@ -30,7 +30,9 @@ body {
   font-family: "JetBrains Mono", monospace;
   font-weight: 700;
   font-size: 0.8rem;
-  padding: 8px 0;
+  height: 35px;
+  display: flex;
+  align-items: center;
   overflow: hidden;
   white-space: nowrap;
   border-bottom: 1px solid var(--accent);
@@ -55,48 +57,67 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: 35% 65%;
-  min-height: calc(100vh - 35px);
+  height: calc(100vh - 35px);
   border-bottom: 1px solid var(--border);
 }
 
 /* --- left panel --- */
 .panel-left {
+  background-color: var(--bg-green);
   border-right: 1px solid var(--border);
-  padding: 4rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  overflow: hidden;
 }
 
 .header h1 {
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 4.5vw, 5rem);
   font-weight: 800;
-  line-height: 0.85;
+  line-height: 0.9;
   letter-spacing: -2px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
-.header span {
+/* --- cursive text --- */
+.script-word {
+  font-family: "Victor Mono", monospace;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: lowercase;
+  font-size: 0.8em;
+  letter-spacing: -1px;
+  display: inline-block;
+  padding-right: 5px;
+  transform: rotate(-1deg);
+  padding-bottom: 1rem;
+}
+
+.header span.plus {
   color: var(--accent);
 }
 
 .manifesto {
   font-family: "JetBrains Mono", monospace;
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 0.8vw, 0.9rem);
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.5;
   border-left: 2px solid var(--accent);
   padding-left: 1.5rem;
+  z-index: 2;
 }
 
 .big-stat {
-  font-size: 12rem;
+  font-size: 20vh;
   position: absolute;
-  bottom: -30px;
-  left: -10px;
+  bottom: -5vh;
+  left: -2vh;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.05);
   pointer-events: none;
   z-index: 0;
 }
@@ -105,23 +126,31 @@ body {
 .panel-right {
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100%;
+  grid-template-rows: repeat(3, 1fr);
+  flex-grow: 1;
+  min-height: 0;
 }
 
 .input-group {
   border-bottom: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  padding: 2.5rem;
-  position: relative;
-  transition: all 0.3s ease;
+  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: background 0.2s ease;
 }
 
 .input-group:nth-child(even) {
@@ -139,10 +168,10 @@ body {
 
 .input-group label {
   font-family: "JetBrains Mono", monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -151,8 +180,8 @@ body {
 
 .input-group label::before {
   content: "";
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: var(--border);
   display: inline-block;
 }
@@ -167,22 +196,18 @@ input {
   border: none;
   color: var(--text-main);
   font-family: "Inter", sans-serif;
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 2.5vh, 2rem);
   font-weight: 400;
   outline: none;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.2rem;
   border-bottom: 1px solid transparent;
-  transition: border-bottom 0.3s;
 }
 
 input:focus {
   border-bottom: 1px solid var(--accent);
 }
 
-input::placeholder {
-  color: #333;
-}
-
+/* remove number spinners */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -196,13 +221,15 @@ input[type="number"] {
 /* --- action area --- */
 .action-area {
   grid-column: 1 / -1;
+  height: clamp(80px, 15vh, 120px);
   display: grid;
   grid-template-columns: 1fr auto;
   border-top: 1px solid var(--border);
+  flex-shrink: 0;
 }
 
 .result-display {
-  padding: 2rem;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -211,23 +238,30 @@ input[type="number"] {
 .result-text {
   font-family: "JetBrains Mono", monospace;
   color: var(--accent);
-  font-size: 1rem;
-  margin-bottom: 5px;
+  font-size: 0.8rem;
+  margin-bottom: 4px;
 }
 
 .result-value {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prob-accent {
+  color: var(--accent);
 }
 
 .btn-submit {
-  background: var(--text-main);
+  background: var(--accent);
   color: black;
   border: none;
-  padding: 0 4rem;
+  padding: 0 3rem;
   font-family: "Inter", sans-serif;
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -239,52 +273,44 @@ input[type="number"] {
 
 .btn-submit:hover {
   background: var(--accent);
-  padding: 0 5rem; /* Slide effect */
+  padding: 0 4rem;
 }
 
 /* --- responsive --- */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
+  body {
+    overflow: auto;
+    height: auto;
+  }
   .grid-container {
     grid-template-columns: 1fr;
     height: auto;
+    display: block;
   }
   .panel-left {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
     padding: 3rem 2rem;
+    min-height: 400px;
   }
-  .brand-header h1 {
-    font-size: 3.5rem;
-  }
-  .big-stat {
-    display: none;
+  .form-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
   }
   .input-group {
     padding: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-  .input-group {
     border-right: none;
   }
   .action-area {
     grid-template-columns: 1fr;
+    height: auto;
   }
   .btn-submit {
     width: 100%;
-    padding: 2rem;
+    padding: 1.5rem;
     justify-content: center;
   }
-  .btn-submit:hover {
-    padding: 2rem;
-    background: var(--accent);
-  }
   .result-display {
-    border-bottom: 1px solid var(--border);
+    padding: 1.5rem;
     text-align: center;
+    border-bottom: 1px solid var(--border);
   }
 }
