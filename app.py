@@ -5,31 +5,45 @@ from huggingface_hub import hf_hub_download
 
 app = Flask(__name__)
 
+model = None
+scaler = None
+
 
 # cargar modelo y scaler remoto
-# def load_assets():
-#     global model, scaler
-#     if model is not None and scaler is not None:
-#         return
+def load_assets():
+    global model, scaler
+    if model is not None and scaler is not None:
+        return
 
-#     # modelo
-#     model_path = hf_hub_download(
-#         repo_id="sophie-muriel/insurance-renewal",
-#         filename="insurance_renewal_model.pkl",
-#         cache_dir="."
-#     )
+    try:
+        print("Starting model download...", flush=True)
+        model_path = hf_hub_download(
+            repo_id="sophie-muriel/insurance-renewal",
+            filename="insurance_renewal_model.pkl",
+            cache_dir="."
+        )
+        print(f"Model downloaded to: {model_path}", flush=True)
 
-#     # scaler
-#     scaler_path = hf_hub_download(
-#         repo_id="sophie-muriel/insurance-renewal",
-#         filename="scaler.pkl",
-#         cache_dir="."
-#     )
+        scaler_path = hf_hub_download(
+            repo_id="sophie-muriel/insurance-renewal",
+            filename="scaler.pkl",
+            cache_dir="."
+        )
+        print(f"Scaler downloaded to: {scaler_path}", flush=True)
 
-#     with open(model_path, "rb") as f:
-#         model = pickle.load(f)
-#     with open(scaler_path, "rb") as f:
-#         scaler = pickle.load(f)
+        with open(model_path, "rb") as f:
+            model = pickle.load(f)
+        print("Model loaded!", flush=True)
+
+        with open(scaler_path, "rb") as f:
+            scaler = pickle.load(f)
+        print("Scaler loaded!", flush=True)
+
+    except Exception as e:
+        print(f"ERROR loading assets: {str(e)}", flush=True)
+        import traceback
+        traceback.print_exc()
+        raise
 
 
 # cargar modelo local
@@ -41,8 +55,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    # load_assets()
-    return render_template("index.html")
+    try:
+        load_assets()
+        return render_template("index.html")
+    except Exception as e:
+        return f"Error: {str(e)}", 500
 
 
 @app.route("/predict", methods=["POST"])
