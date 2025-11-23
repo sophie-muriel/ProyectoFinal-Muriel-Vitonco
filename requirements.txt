@@ -9,3 +9,4 @@ scikit-learn
 flask
 ipykernel
 ipywidgets
+huggingface_hub
