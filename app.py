@@ -56,9 +56,15 @@ def predict():
 
     # generar texto del resultado
     if prediction == 1:
-        result_text = f"RENOVACIÓN PROBABLE // CONFIANZA: {prob_renew*100:.1f}%"
+        result_text = (
+            f"RENOVACIÓN PROBABLE // PROBABILIDAD: "
+            f"<span class='prob-accent'>{prob_renew*100:.1f}%</span>"
+        )
     else:
-        result_text = f"RENOVACIÓN IMPROBABLE (CHURN) // CONFIANZA: {prob_renew*100:.1f}%"
+        result_text = (
+            f"RENOVACIÓN IMPROBABLE (CHURN) // PROBABILIDAD: "
+            f"<span class='prob-accent'>{prob_renew*100:.1f}%</span>"
+        )
 
     return render_template("index.html", prediction_text=result_text)
 
