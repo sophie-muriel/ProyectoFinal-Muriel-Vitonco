@@ -207,6 +207,46 @@ python app.py
 
 ---
 
+## Resultados principales del modelo
+
+El modelo final desarrollado para predecir la **probabilidad de renovación de pólizas** se construyó después del EDA, balanceo de clases, escalado y comparación de múltiples algoritmos.
+
+### Desempeño general
+
+- El modelo seleccionado ofrece alta capacidad para distinguir clientes que renuevan vs. no renuevan, incluso con un dataset fuertemente desbalanceado (~6.3% no renuevan).
+- Se priorizaron métricas enfocadas en la clase minoritaria, evitando depender únicamente de la accuracy.
+
+### Métricas destacadas
+
+- **Recall (para no renovación)**: Alto, permitiendo identificar una mayor proporción de clientes con riesgo real de no renovar.
+- **Precision (para no renovación)**: Adecuada pese al desbalance, reduciendo falsos positivos.
+- **F1-score**: Muestra un balance sólido entre recall y precision en la clase minoritaria.
+- **ROC-AUC**: Indica buena separación entre ambas clases.
+
+*(Nota: los valores exactos de las métricas se pueden consultar en la sección de modelado del notebook.)*
+
+### Variables más influyentes
+
+El análisis del modelo resalta que los factores más relevantes para predecir la no renovación son:
+
+1. **`perc_premium_paid_by_cash_credit`**: Los clientes que pagan mayor parte de la prima con efectivo/crédito tienen mayor riesgo de no renovar.
+2. **Historial de atrasos**: `count_3-6_months_late`, `count_6-12_months_late`, `count_more_than_12_months_late` son señales muy fuertes de riesgo.
+3. **`premium`**: Primas más altas se relacionan con una mayor probabilidad de renovación.
+4. **`application_underwriting_score`**: Aunque con baja variabilidad, pequeñas diferencias son significativas.
+5. **`sourcing_channel`**: Ciertos canales presentan tasas de renovación más bajas, clave para ajustar estrategias comerciales.
+
+### Conclusión
+
+El modelo permite identificar perfiles de clientes con riesgo de no renovar para:
+
+- Aplicar campañas preventivas más eficientes.
+- Optimizar incentivos por canal comercial.
+- Priorizar clientes donde una intervención temprana puede evitar la pérdida de ingresos.
+
+Este resultado (detallado más en el notebook) se integra en la aplicación Flask incluida en el proyecto, permitiendo realizar predicciones de manera simple y accesible desde una interfaz web.
+
+---
+
 ## Contribuyentes
 
 - **Sophie Muriel** – [GitHub](https://github.com/sophie-muriel)
