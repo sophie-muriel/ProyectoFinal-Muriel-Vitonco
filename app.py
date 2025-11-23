@@ -2,6 +2,8 @@ import numpy as np
 from flask import Flask, request, render_template
 import pickle
 from huggingface_hub import hf_hub_download
+import logging
+logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
@@ -32,6 +34,7 @@ with open(scaler_path, "rb") as f:
 
 @app.route("/")
 def home():
+    app.logger.info("Home route accessed")
     return render_template("index.html")
 
 
@@ -94,4 +97,4 @@ def predict():
 if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)
