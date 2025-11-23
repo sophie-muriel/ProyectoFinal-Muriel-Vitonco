@@ -3,23 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PREDICTOR DE RENOVACIÓN // ML</title>
+    <title>PREDICTOR // RENOVACIÓN</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Victor+Mono:ital,wght@1,100..700&display=swap"
       rel="stylesheet"
     />
-    <!-- <link
+    <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
-    /> -->
+    />
   </head>
   <body>
+    <div class="ribbon">
+      <span>
+        >START PROYECTO FINAL /// SOPHIE ROSERO MURIEL /// KAROL VANESSA VITONCO
+        /// 2025.11.22 /// MACHINE LEARNING /// INSURANCE_COMPANY.CSV ///
+        JUPYTER NOTEBOOK /// PYTHON 3.12.3 /// ANÁLISIS EXPLORATORIO DE DATOS
+        /// PROCESAMIENTO DE DATOS /// ENTRENAMIENTO/EVALUACIÓN DE MODELOS ///
+        RANDOM FOREST /// KNN /// REGRESIÓN LOGÍSTICA /// DATA PROFILING ///
+        SMOTE /// ONEHOTENCODER /// MINMAXSCALER /// FLASK ///
+      </span>
+    </div>
+
     <div class="grid-container">
       <aside class="panel-left">
         <div class="header">
-          <h1>PREDICCIÓN DE RENOVACIÓN DE PÓLIZAS<span>+</span></h1>
+          <h1>
+            PREDICCIÓN<span class="plus">:</span><br /><span class="script-word"
+              >RENOVACIÓN DE</span
+            ><br />PÓLIZAS<span class="plus">+</span>
+          </h1>
         </div>
         <div class="manifesto">
           <p>
@@ -29,25 +44,17 @@
             de renovación en tiempo real.
           </p>
           <br />
-          <p style="color: white; font-weight: bold">
+          <p style="color: white; font-weight: bold; font-size: 0.9em">
             // MODELO PREDICTIVO RANDOM FOREST.
           </p>
         </div>
+        <div class="big-stat">25</div>
       </aside>
       <main class="panel-right">
-        <form
-          action="{{ url_for('predict')}}"
-          method="post"
-          style="
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-          "
-        >
+        <form action="{{ url_for('predict')}}" method="post">
           <div class="form-grid">
             <div class="input-group">
-              <label>Porcentaje de Pago en Efectivo/Crédito (#)</label>
+              <label>Porcentaje de Pago Efectivo/Crédito (#)</label>
               <input
                 type="number"
                 name="perc_premium_paid_by_cash_credit"
@@ -71,7 +78,7 @@
               />
             </div>
             <div class="input-group">
-              <label>Puntuación de Suscripción (#)</label>
+              <label>Puntaje de Suscripción (#)</label>
               <input
                 type="number"
                 name="application_underwriting_score"
@@ -87,7 +94,7 @@
               <input
                 type="number"
                 name="age_in_years"
-                placeholder="Años"
+                placeholder="#"
                 required
                 min="0"
                 max="103"
@@ -99,7 +106,7 @@
               <input
                 type="number"
                 name="total_late_payments"
-                placeholder="Conteo"
+                placeholder="#"
                 required
                 min="0"
                 max="50"
@@ -107,11 +114,11 @@
               />
             </div>
             <div class="input-group">
-              <label>Indicador de Historial (0/1)</label>
+              <label>Historial de Atrasos (0/1)</label>
               <input
                 type="number"
                 name="has_late_payments"
-                placeholder="Booleano"
+                placeholder="Bool"
                 required
                 min="0"
                 max="1"
@@ -122,17 +129,19 @@
           <div class="action-area">
             <div class="result-display">
               {% if prediction_text %}
-              <div class="result-text">> RESULTADO DEL MODELO:</div>
-              <div class="result-value">{{ prediction_text }}</div>
+              <div class="result-text">> RESULTADO:</div>
+              <div class="result-value" style="color: var(--text-main)">
+                {{ prediction_text|safe }}
+              </div>
               {% else %}
               <div class="result-text">> ESTADO:</div>
-              <div class="result-value" style="color: #333">
-                Esperando Entrada...
+              <div class="result-value" style="color: #444">
+                Esperando Datos...
               </div>
               {% endif %}
             </div>
             <button type="submit" class="btn-submit">
-              Obtener Resultado <span style="font-size: 1.2em">→</span>
+              Analizar <span style="font-size: 1.2em">→</span>
             </button>
           </div>
         </form>
