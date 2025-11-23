@@ -1,11 +1,33 @@
 import numpy as np
 from flask import Flask, request, render_template
 import pickle
+from huggingface_hub import hf_hub_download
 
 app = Flask(__name__)
 
-model = pickle.load(open("insurance_renewal_model.pkl", "rb"))  # cargar modelo
-scaler = pickle.load(open("scaler.pkl", "rb"))                  # cargar scaler
+# cargar modelo remoto
+model_path = hf_hub_download(
+    repo_id="sophie-muriel/insurance-renewal",
+    filename="insurance_renewal_model.pkl")
+
+# cargar scaler remoto
+scaler_path = hf_hub_download(
+    repo_id="sophie-muriel/insurance-renewal",
+    filename="scaler.pkl"
+)
+
+with open(model_path, "rb") as f:
+    model = pickle.load(f)  # abrir modelo
+
+with open(scaler_path, "rb") as f:
+    scaler = pickle.load(f)  # abrir scaler
+
+
+# cargar modelo local
+# model = pickle.load(open("insurance_renewal_model.pkl", "rb"))
+
+# cargar scaler local
+# scaler = pickle.load(open("scaler.pkl", "rb"))
 
 
 @app.route("/")
