@@ -1,14 +1,16 @@
-# > PROYECTO FINAL ML <
+<div align="center">
 
-![logo](/static/header.png)
+# > PROYECTO FINAL: MACHINE LEARNING <
+***`SISTEMA DE PREDICCIÓN DE RETENCIÓN DE PÓLIZAS DE SEGUROS.`***
 
-![mockups](/static/mockups.png)
+<img src="/static/header.png" alt="logo" width="60%">
+<img src="/static/mockups.png" alt="mockups">
 
-![Repo Size](https://img.shields.io/github/repo-size/sophie-muriel/ProyectoFinal-Muriel-Vitonco?style=for-the-badge&color=black&labelColor=grey)
-![Last Commit](https://img.shields.io/github/last-commit/sophie-muriel/ProyectoFinal-Muriel-Vitonco?style=for-the-badge&color=ffe058&labelColor=black)
-![Contributors](https://img.shields.io/github/contributors/sophie-muriel/ProyectoFinal-Muriel-Vitonco?style=for-the-badge&color=black&labelColor=grey)
+<img src="https://img.shields.io/github/repo-size/sophie-muriel/ProyectoFinal-Muriel-Vitonco?style=for-the-badge&color=black&labelColor=grey" alt="Repo Size">
+<img src="https://img.shields.io/github/last-commit/sophie-muriel/ProyectoFinal-Muriel-Vitonco?style=for-the-badge&color=ffe058&labelColor=black" alt="Last Commit">
+<img src="https://img.shields.io/github/contributors/sophie-muriel/ProyectoFinal-Muriel-Vitonco?style=for-the-badge&color=black&labelColor=grey" alt="Contributors">
 
-> ***SISTEMA DE PREDICCIÓN DE RETENCIÓN DE PÓLIZAS DE SEGUROS.***
+</div>
 
 ## ⚡ APP WEB // DEMO EN VIVO
 
