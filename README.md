@@ -1,7 +1,7 @@
 <div align="center">
 
-# > MACHINE LEARNING PROJECT: INSURANCE // RENEWAL <
-***`INSURANCE POLICY RENEWAL PREDICTION SYSTEM.`***
+# > INSURANCE // RENEWAL <
+***`MACHINE LEARNING PROJECT: INSURANCE POLICY RENEWAL PREDICTION SYSTEM.`***
 
 <img src="/static/header.png" alt="logo" width="60%">
 <img src="/static/mockups.png" alt="mockups">
