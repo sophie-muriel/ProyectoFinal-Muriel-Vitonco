@@ -42,7 +42,7 @@ To keep the repository lightweight and optimized, heavy binary files (`.pkl`) ar
 
 ## 📘 PROJECT DETAILS
 
-Este repositorio busca analizar patrones de comportamiento en el pago de pólizas de seguros para calcular la probabilidad de renovación, tomando información de dataset proporcionado (`insurance_company.csv`). El flujo de trabajo abarca desde la ingesta de datos crudos hasta el despliegue de inferencia.
+This repository analyzes behavior patterns in insurance policy payments to predict renewal probability using the provided dataset (`insurance_company.csv`). The workflow covers everything from raw data ingestion to inference deployment.
 
 **/// NOTEBOOK.IPYNB COMPONENTS:**
 
