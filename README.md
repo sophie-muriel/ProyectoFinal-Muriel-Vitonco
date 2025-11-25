@@ -1,7 +1,7 @@
 <div align="center">
 
-# > PROYECTO FINAL: MACHINE LEARNING <
-***`SISTEMA DE PREDICCIÓN DE RETENCIÓN DE PÓLIZAS DE SEGUROS.`***
+# > MACHINE LEARNING PROJECT: INSURANCE // RENEWAL <
+***`INSURANCE POLICY RENEWAL PREDICTION SYSTEM.`***
 
 <img src="/static/header.png" alt="logo" width="60%">
 <img src="/static/mockups.png" alt="mockups">
@@ -12,52 +12,52 @@
 
 </div>
 
-## ⚡ APP WEB // DEMO EN VIVO
+## ⚡ WEB APP // LIVE DEMO
 
-Este proyecto opera como una aplicación web en Flask para inferencia en tiempo real.
-La instancia de producción está desplegada estáticamente en **Railway**.
+This project runs as a Flask web application for real-time inference.
+The production instance is statically deployed on **Railway**.
 
-**🔗 ACCESO AL SISTEMA** > **[https://proyectofinal-muriel-vitonco-production.up.railway.app/](https://proyectofinal-muriel-vitonco-production.up.railway.app/)**
+**🔗 ACCESS HERE** > **[insurance-renewal.up.railway.app](https://insurance-renewal.up.railway.app/)**
 
-## ⚠️ NOTA: ARCHIVOS EXTERNOS
+## ⚠️ NOTE: EXTERNAL FILES
 
-Para optimizar el repositorio, los archivos binarios pesados (`.pkl`) **NO** están alojados aquí.
+To keep the repository lightweight and optimized, heavy binary files (`.pkl`) are **NOT** hosted here.
 
-- **Origen:** Se generan automáticamente en la `[SECCIÓN 10]` del Jupyter Notebook durante su ejecución.
-- **Runtime:** Durante el despliegue, el sistema descarga automáticamente los modelos desde **Hugging Face Hub**.
+- **Source:** They are automatically generated in `[SECTION 10]` of the Jupyter Notebook when executed.
+- **Runtime:** During deployment, the system automatically downloads the models from **Hugging Face Hub**.
 
-| ARCHIVO                       | TIPO                   | ENLACE                                                                                                            |
+| FILE                          | TYPE                   | LINK                                                                                                              |
 | :---------------------------- | :--------------------- | :---------------------------------------------------------------------------------------------------------------- |
-| `insurance_renewal_model.pkl` | Modelo (Random Forest) | [Hugging Face Repo](https://huggingface.co/sophie-muriel/insurance-renewal/blob/main/insurance_renewal_model.pkl) |
+| `insurance_renewal_model.pkl` | Model (Random Forest)  | [Hugging Face Repo](https://huggingface.co/sophie-muriel/insurance-renewal/blob/main/insurance_renewal_model.pkl) |
 | `scaler.pkl`                  | Scaler (MinMax)        | [Hugging Face Repo](https://huggingface.co/sophie-muriel/insurance-renewal/blob/main/scaler.pkl)                  |
 
-## 🧭 ÍNDICE // NAVEGACIÓN
+## 🧭 TABLE OF CONTENTS // NAVIGATION
 
-1.  [DETALLES DEL PROYECTO](#-detalles-del-proyecto)
-2.  [SISTEMA DE ARCHIVOS](#-sistema-de-archivos)
-3.  [INICIALIZACIÓN](#-inicialización)
-4.  [PROTOCOLOS DE EJECUCIÓN](#-protocolos-de-ejecución)
-5.  [CONCLUSIONES GENERALES](#-conclusiones-generales)
-6.  [AUTORES](#-autores)
+1.  [PROJECT DETAILS](#-project-details)
+2.  [FILE STRUCTURE](#-file-structure)
+3.  [SETUP](#-setup)
+4.  [EXECUTION INSTRUCTIONS](#-execution-instructions)
+5.  [GENERAL CONCLUSIONS](#-general-conclusions)
+6.  [AUTHORS](#-authors)
 
-## 📘 DETALLES DEL PROYECTO
+## 📘 PROJECT DETAILS
 
 Este repositorio busca analizar patrones de comportamiento en el pago de pólizas de seguros para calcular la probabilidad de renovación, tomando información de dataset proporcionado (`insurance_company.csv`). El flujo de trabajo abarca desde la ingesta de datos crudos hasta el despliegue de inferencia.
 
-**/// COMPONENTES DEL NOTEBOOK.IPYNB:**
+**/// NOTEBOOK.IPYNB COMPONENTS:**
 
-- `CASO DE NEGOCIO`: Introducción, identificación del problema (retención de clientes y su impacto financiero), datos, objetivos y variables (dependiente/independiente).
-- `DESCRIPCIÓN`: Carga de librerías/datos e información general del dataset y sus variables.
-- `EDA`: Análisis exploratorio (con detección de patrones y outliers) y Data Profiling.
-- `PREPROCESSING`: Limpieza, codificación, imputación, normalización y transformación de variables.
-- `MODELING`: Entrenamiento y evaluación de modelos (Random Forest, KNN, Regresión Logística).
-- `RECOMENDACIONES`: Conclusiones finales y acciones sugeridas para mejorar la retención y optimizar los esfuerzos comerciales.
-- `DEPLOYMENT`: API Flask + Frontend estilizado hosteado en **Railway**.
+- `BUSINESS CASE`: Introduction, problem identification (customer retention & financial impact), data, objectives, and variables (dependent/independent).
+- `DESCRIPTION`: Library/data loading and general dataset & variable info.
+- `EDA`: Exploratory data analysis (pattern & outlier detection) + Data Profiling.
+- `PREPROCESSING`: Cleaning, encoding, imputation, normalization, and variable transformation.
+- `MODELING`: Training and evaluation of models (Random Forest, KNN, Logistic Regression).
+- `RECOMMENDATIONS`: Final conclusions and suggested actions to improve retention and optimize sales efforts.
+- `DEPLOYMENT`: Flask API + styled frontend hosted on **Railway**.
 
-## 📂 SISTEMA DE ARCHIVOS
+## 📂 FILE STRUCTURE
 
 ```text
-PROYECTOFINAL-MURIEL-VITONCO/
+INSURANCE-RENEWAL/
 │
 ├── data/                                    # [DATASET INPUT/OUTPUT]
 │   ├── crosstabs/
@@ -75,44 +75,44 @@ PROYECTOFINAL-MURIEL-VITONCO/
 │   ├── renewal_dist.png
 │   └── renewal_smote_dist.png
 │
-├── static/                                  # [ESTILOS FRONTEND]
+├── static/                                  # [FRONTEND STYLES + ASSETS]
 │   ├── css/styles.css
 │   ├── favicon.svg
 │   ├── header.png
 │   └── mockups.png
 │
-├── templates/                               # [INTERFAZ WEB]
+├── templates/                               # [WEB INTERFACE]
 │   └── index.html
 │
-├── app.py                                   # [BACKEND FLASK]
-├── notebook.ipynb                           # [NOTEBOOK]
-├── reporte_eda_profiling.html               # [REPORTE YDATA-PROFILING]
-├── presentation.pdf                         # [PRESENTACIÓN]
-├── .python-version                          # [VERSIÓN DE PYTHON]
-├── requirements.txt                         # [DEPENDENCIAS]
-└── README.md                                # < USTED ESTÁ AQUÍ >
+├── app.py                                   # [FLASK BACKEND]
+├── notebook.ipynb                           # [JUPYTER NOTEBOOK]
+├── eda_profiling_report.html                # [YDATA-PROFILING REPORT]
+├── presentation.pdf                         # [PRESENTATION]
+├── .python-version                          # [PYTHON VERSION]
+├── requirements.txt                         # [DEPENDENCIES]
+└── README.md                                # < YOU ARE HERE >
 ```
 
-### 📝 DESCRIPCIÓN GENERAL
+### 📝 GENERAL DESCRIPTION
 
-- `data/`: Datasets original/transformado y tablas estadísticas generadas durante el EDA.
-- `images/`: Visualizaciones producidas en el análisis (univariado, bivariado, correlaciones y gráficos del modelo).
-- `static/`: Estilos CSS, imágenes de mockups e ícono del sitio web.
-- `templates/`: Plantilla HTML para la aplicación web (`index.html`).
-- `app.py`: Archivo principal del servidor Flask, manejo de rutas, carga del modelo y predicciones.
-- `notebook.ipynb`: EDA, transformación de datos, entrenamiento, evaluación de modelos, recomendaciones.
-- `reporte_eda_profiling.html`: Reporte automático generado con YData-Profiling.
-- `requirements.txt`: Lista de dependencias necesarias para reproducir el proyecto.
+- `data/`: Original/transformed datasets and statistical tables generated during EDA.
+- `images/`: Visualizations from the analysis (univariate, bivariate, correlations, model plots).
+- `static/`: CSS styles, mockup images (assets), and site favicon.
+- `templates/`: HTML template for the web app (`index.html`).
+- `app.py`: Main Flask server file — handles routes, model loading, and predictions.
+- `notebook.ipynb`: EDA, data transformation, training, model evaluation, recommendations.
+- `eda_profiling_report.html`: Auto-generated report using YData-Profiling.
+- `requirements.txt`: All dependencies needed to reproduce the project.
 
-## 🛠️ INICIALIZACIÓN
+## 🛠️ SETUP
 
-**REQUISITOS DEL SISTEMA:**
+**SYSTEM REQUIREMENTS:**
 
 - Python 3.9+
 - pip
-- Entorno Virtual (Recomendado)
-- Navegador web
-- Dependencias:
+- Virtual environment (recommended)
+- Web browser
+- Dependencies:
   - pandas
   - numpy
   - matplotlib
@@ -133,16 +133,16 @@ PROYECTOFINAL-MURIEL-VITONCO/
 pip install -r requirements.txt
 ```
 
-## 🚀 PROTOCOLOS DE EJECUCIÓN
+## 🚀 EXECUTION INSTRUCTIONS
 
-### 1. CLONAR REPOSITORIO
+### 1. CLONE REPOSITORY
 
 ```bash
-git clone https://github.com/sophie-muriel/ProyectoFinal-Muriel-Vitonco.git
-cd ProyectoFinal-Muriel-Vitonco
+git clone https://github.com/sophie-muriel/insurance-renewal.git
+cd insurance-renewal
 ```
 
-### 2. CONFIGURAR ENTORNO VIRTUAL (RECOMENDADO)
+### 2. CREATE VIRTUAL ENVIRONMENT (RECOMMENDED)
 
 ```bash
 # Windows
@@ -154,61 +154,61 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### 3.INSTALAR DEPENDENCIAS
+### 3. INSTALL DEPENDENCIES
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. EJECUTAR NOTEBOOK
+### 4. RUN NOTEBOOK
 
-Para regenerar el análisis completo y re-entrenar los modelos localmente:
+To re-run the full analysis and retrain models locally:
 
 ```bash
 jupyter notebook
-# Ejecutar todas las celdas de 'notebook.ipynb'
+# Run all cells in 'notebook.ipynb'
 ```
 
-### 5. INICIAR APP FLASK LOCALMENTE (INFERENCIA)
+### 5. RUN FLASK APP LOCALLY (INFERENCE)
 
 ```bash
 python app.py
 ```
 
-_El servidor iniciará en `http://localhost:8080`._
+*The server will start at `http://localhost:8080`.*
 
-### 6. ... O IR AL DEMO EN VIVO
+### 6. ... OR GO TO THE LIVE DEMO
 
-Justo aquí > [PREDICTOR // RENOVACIÓN](#-app-web--demo-en-vivo)
+Right here > [INSURANCE // RENEWAL](#-web-app--live-demo)
 
-## 📊 CONCLUSIONES GENERALES
+## 📊 GENERAL CONCLUSIONS
 
-> \*El objetivo principal fue: **¿Qué factores influyen en la propensión a renovar primas de seguros, y cómo se puede preparar el dataset, modelar y evaluar para predecir esta probabilidad y optimizar incentivos?\***
+> \*Main goal: **What factors influence the likelihood of renewing insurance premiums, and how can we prepare the dataset, model, and evaluate it to predict this probability and optimize incentives?\***
 
-El modelo final (**Random Forest**) se seleccionó tras el EDA, Data Preprocessing y pruebas comparativas entre múltiples modelos, principalmente debido a su capacidad para manejar el desbalance de clases (~6.3% Churn Rate). Este modelo presenta una alta capacidad de diferenciación entre clientes que renuevan vs. no renuevan.
+The final model (**Random Forest**) was chosen after EDA, data preprocessing, and comparative testing of multiple models — mainly because of its ability to handle severe class imbalance (~6.3% churn rate). It also shows excellent differentiation between renewing and non-renewing customers.
 
-**> STATUS DEL MODELO:**
+**> MODEL STATUS:**
 
-- **Variable Objetivo:** Renovación (Binaria); `renewal`.
-- **Prioridad:** Maximizar `Recall` en clase minoritaria (No Renovación).
-- **Métricas excelentes**: Precisión alta, F1-score balanceado, ROC-AUC sólido con buena separación entre clases, etc.
+- **Target Variable:** Renewal (binary); `renewal`.
+- **Priority:** Maximize `Recall` on the minority class (Non-Renewal).
+- **Metrics**: High precision, outstanding F1-score, strong ROC-AUC with good class separation, and more.
 
-> _Los valores exactos pueden consultarse en la `[SECCIÓN 8.2]` del Jupyter Notebook._
+>*Exact values can be found in `[SECTION 8.2]` of the Jupyter Notebook.*
 
-**> VARIABLES DE ALTO IMPACTO:**
+**> HIGHEST-IMPACT FEATURES:**
 
 1. `perc_premium_paid_by_cash_credit`
 2. `income`
 3. `application_underwriting_score`
 4. `age_in_years`
 5. `total_late_payments`
-6. `has_late_payments` (Historial)
+6. `has_late_payments` (history)
 
-Para consultar la totalidad del análisis, se incluye en el repositorio el archivo `presentation.pdf`. Estas diapositivas contienen el resumen completo del proyecto, la metodología detallada, los hallazgos visuales y las conclusiones estratégicas finales. Se recomienda su revisión para una comprensión integral del caso de negocio y los hallazgos encontrados.
+For the full analysis, check `presentation.pdf` in the repo — it contains the complete project summary, detailed methodology, visual findings, and final strategic conclusions. It is highly recommended to review it for a comprehensive understanding of the business case and all key insights.
 
-## 👥 AUTORES
+## 👥 AUTHORS
 
-Hecho por:
+Made by:
 
-- **Sophie Muriel** > [PERFIL DE GITHUB](https://github.com/sophie-muriel)
-- **Karol Vitonco** > [PERFIL DE GITHUB](https://github.com/KrlVanessa)
+- **Sophie Muriel** > [GITHUB PROFILE](https://github.com/sophie-muriel)
+- **Karol Vitonco** > [GITHUB PROFILE](https://github.com/KrlVanessa)
