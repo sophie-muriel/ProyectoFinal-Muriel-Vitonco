@@ -135,7 +135,6 @@ body {
   line-height: 0.9;
   letter-spacing: -2px;
   margin-bottom: 1rem;
-  text-transform: uppercase;
 }
 
 /* --- cursive text --- */
@@ -144,7 +143,6 @@ body {
   font-style: italic;
   font-weight: 500;
   color: var(--accent);
-  text-transform: lowercase;
   font-size: 0.8em;
   letter-spacing: -1px;
   display: inline-block;
@@ -183,8 +181,8 @@ body {
 .big-stat {
   font-size: 20vh;
   position: absolute;
-  bottom: -5vh;
-  left: -2vh;
+  bottom: -3vh;
+  left: 1vh;
   font-weight: 800;
   color: rgba(255, 255, 255, 0.05);
   pointer-events: none;
@@ -265,7 +263,7 @@ input {
   border: none;
   color: var(--text-main);
   font-family: "Inter", sans-serif;
-  font-size: clamp(1.2rem, 2.5vh, 1.5rem);
+  font-size: 2rem;
   font-weight: 400;
   outline: none;
   padding-bottom: 0.2rem;
@@ -363,6 +361,9 @@ input[type="number"] {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     order: 2;
+  }
+  input {
+    font-size: 1.5rem;
   }
   .input-group {
     padding: 2rem;
