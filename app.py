@@ -25,12 +25,12 @@ def background_load():
             print(">>> EMPEZANDO DESCARGA DE MODELO...", flush=True)
 
             model_path = hf_hub_download(
-                repo_id="sophie-muriel/insurance-renewal",
+                repo_id="sophie-muriel/renovacion-seguros",
                 filename="insurance_renewal_model.pkl",
                 cache_dir="."
             )
             scaler_path = hf_hub_download(
-                repo_id="sophie-muriel/insurance-renewal",
+                repo_id="sophie-muriel/renovacion-seguros",
                 filename="scaler.pkl",
                 cache_dir="."
             )
