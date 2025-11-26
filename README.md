@@ -2,7 +2,7 @@
 
 # > RENOVACIÓN // SEGUROS <
 
-**_`PROYECTO FINAL - MACHINE LEARNING (ELECTIVA IV): SISTEMA DE PREDICCIÓN DE RETENCIÓN DE PÓLIZAS DE SEGUROS.`_**
+**_`PROYECTO FINAL - MACHINE LEARNING: SISTEMA DE PREDICCIÓN DE RETENCIÓN DE PÓLIZAS DE SEGUROS.`_**
 
 <img src="/static/header.png" alt="logo" width="60%">
 <img src="/static/mockups.png" alt="mockups">
