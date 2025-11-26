@@ -324,7 +324,7 @@ input[type="number"] {
   background: var(--accent);
   color: black;
   border: none;
-  padding: 0 3rem;
+  padding: 0 5rem;
   font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 1.2rem;
@@ -339,7 +339,7 @@ input[type="number"] {
 
 .btn-submit:hover {
   background: var(--accent);
-  padding: 0 4rem;
+  padding: 0 6rem;
 }
 
 /* --- responsive --- */
