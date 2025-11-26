@@ -1,3 +1,4 @@
+import os
 import numpy as np
 from flask import Flask, request, render_template, jsonify
 import pickle
@@ -22,31 +23,41 @@ def background_load():
 
     with load_lock:
         try:
-            print(">>> EMPEZANDO DESCARGA DE MODELO...", flush=True)
+            local_model_path = "insurance_renewal_model.pkl"
+            local_scaler_path = "scaler.pkl"
 
-            model_path = hf_hub_download(
-                repo_id="sophie-muriel/renovacion-seguros",
-                filename="insurance_renewal_model.pkl",
-                cache_dir="."
-            )
-            scaler_path = hf_hub_download(
-                repo_id="sophie-muriel/renovacion-seguros",
-                filename="scaler.pkl",
-                cache_dir="."
-            )
+            if os.path.exists(local_model_path) and os.path.exists(local_scaler_path):
+                print(">>> CARGANDO DESDE ARCHIVOS LOCALES...", flush=True)
 
-            # abrir con Pickle
-            with open(model_path, "rb") as f:
-                model = pickle.load(f)
-            with open(scaler_path, "rb") as f:
-                scaler = pickle.load(f)
+                with open(local_model_path, "rb") as f:
+                    model = pickle.load(f)
+                with open(local_scaler_path, "rb") as f:
+                    scaler = pickle.load(f)
+            else:
+                print(">>> EMPEZANDO DESCARGA DE MODELO...", flush=True)
+
+                model_path = hf_hub_download(
+                    repo_id="sophie-muriel/renovacion-seguros",
+                    filename="insurance_renewal_model.pkl",
+                    cache_dir="."
+                )
+                scaler_path = hf_hub_download(
+                    repo_id="sophie-muriel/renovacion-seguros",
+                    filename="scaler.pkl",
+                    cache_dir="."
+                )
+
+                # abrir con Pickle
+                with open(model_path, "rb") as f:
+                    model = pickle.load(f)
+                with open(scaler_path, "rb") as f:
+                    scaler = pickle.load(f)
 
             is_ready = True
             print(">>> MODELO CARGADO CORRECTAMENTE.", flush=True)
 
         except Exception as e:
             print(f"ERROR CARGANDO MODELO: {str(e)}", flush=True)
-            is_loading = False
 
 
 # thread (background loading basically)
