@@ -16,9 +16,9 @@
 ## ⚡ APP WEB // DEMO EN VIVO
 
 Este proyecto opera como una aplicación web en Flask para inferencia en tiempo real.
-La instancia de producción está desplegada estáticamente en **Railway**.
+La instancia de producción está desplegada estáticamente en [**Render**](https://render.com/).
 
-**🔗 ACCESO AL SISTEMA** > **[renovacion-seguros.up.railway.app](https://renovacion-seguros.up.railway.app/)**
+**🔗 ACCESO AL SISTEMA** > **[renovacion-seguros.onrender.com](https://renovacion-seguros.onrender.com)**
 
 ## ⚠️ NOTA: ARCHIVOS EXTERNOS
 
@@ -52,7 +52,7 @@ Este repositorio busca analizar patrones de comportamiento en el pago de póliza
 - `PREPROCESSING`: Limpieza, codificación, imputación, normalización y transformación de variables.
 - `MODELING`: Entrenamiento y evaluación de modelos (Random Forest, KNN, Regresión Logística).
 - `RECOMENDACIONES`: Conclusiones finales y acciones sugeridas para mejorar la retención y optimizar los esfuerzos comerciales.
-- `DEPLOYMENT`: API Flask + Frontend estilizado hosteado en **Railway**.
+- `DEPLOYMENT`: API Flask + Frontend estilizado hosteado en [**Render**](https://render.com/).
 
 ## 📂 SISTEMA DE ARCHIVOS
 
